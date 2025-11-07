@@ -44,11 +44,53 @@ namespace IBASEmployeeService.Controllers
                     Id = 2,
                     Name = "Support"
                 }
+            },
+            new Employee() {
+            Id = "24",
+            Name = "Sofie Sofiesen",
+            Email = "soit@ibas.dk",
+            Department = new Department() { Id = 3, Name = "it" }
+            },
+            new Employee() {
+                Id = "25",
+                Name = "Martin Martin",
+                Email = "mait@ibas.dk",
+                Department = new Department() { Id = 3, Name = "it" }
+            },
+            new Employee() {
+                Id = "26",
+                Name = "Lars Larsen",
+                Email = "lait@ibas.dk",
+                Department = new Department() { Id = 3, Name = "it" }
+            },
+             
+            new Employee() {
+                Id = "27",
+                Name = "Sara Hansen",
+                Email = "sako@ibas.dk",
+                Department = new Department() { Id = 4, Name = "kantinen" }
+            },
+            new Employee() {
+                Id = "28",
+                Name = "Jonas Oldegaard",
+                Email = "joko@ibas.dk",
+                Department = new Department() { Id = 4, Name = "kantinen" }
             }
         };
             return employees;
         }
+        
+        [HttpGet("GetByDepartment/{departmentName}")]
+        public IEnumerable<Employee> GetByDepartment(string departmentName)
+        {
+            return Get().Where(e => 
+                e.Department != null && 
+                e.Department.Name.Equals(departmentName, StringComparison.OrdinalIgnoreCase)
+            );
+        }
     }
+    
+    
 
 
 }
